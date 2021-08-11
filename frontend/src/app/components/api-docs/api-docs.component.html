@@ -1752,6 +1752,23 @@
               </ng-template>
             </ngb-panel>
 
+            <ngb-panel id="bisqMarketsMarkets">
+              <ng-template ngbPanelTitle>
+                <span>GET Markets</span>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <div class="endpoint">
+                  <div class="subtitle" i18n="Api docs endpoint">Endpoint</div>
+                  <a href="/api/markets" target="_blank">GET /api/markets</a>
+                </div>
+                <div class="description">
+                  <div class="subtitle" i18n>Description</div>
+                  <div i18n>Provides list of available markets.</div>
+                </div>
+                <app-code-template [code]="code.bisqMarketsMarketsModule" [network]="network.val" [layer]="'bisq'"></app-code-template>
+              </ng-template>
+            </ngb-panel>
+
           </ngb-accordion>
         </ng-template>
       </li>

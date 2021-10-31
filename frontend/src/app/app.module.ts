@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
@@ -113,7 +114,8 @@ import { PushTransactionComponent } from './components/push-transaction/push-tra
     SharedModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
-    })
+    }),
+    HighlightModule
   ],
   providers: [
     ElectrsApiService,
@@ -122,7 +124,16 @@ import { PushTransactionComponent } from './components/push-transaction/push-tra
     AudioService,
     SeoService,
     StorageService,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpCacheInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpCacheInterceptor, multi: true },
+    { provide: HIGHLIGHT_OPTIONS, useValue: {
+      coreLibraryLoader: () => import('highlight.js/lib/core'),
+      languages: {
+        javascript: () => import('highlight.js/lib/languages/javascript'),
+        bash: () => import('highlight.js/lib/languages/bash'),
+        json: () => import('highlight.js/lib/languages/json'),
+        xml: () => import('highlight.js/lib/languages/xml'),
+      }
+    }}
   ],
   bootstrap: [AppComponent]
 })
